@@ -1,0 +1,77 @@
+body {
+    color: white;
+    background: #1B244A;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.header {
+    margin-bottom: -70;
+}
+
+h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 36px;
+
+    width: 149px;
+    left: 85px;
+    top: 68px;
+}
+
+.box {
+    background-color: black;
+    margin-bottom: -100;
+    border-radius: 5px;
+}
+
+@font-face {
+    font-family: cursedTimerULiL;
+    src: url(fonts/Cursed_Timer_ULiL/CursedTimerULiL.ttf);
+}
+
+p {
+    font-family: cursedTimerULiL;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 127px;
+    padding-top: 7px;
+    text-align: center;
+    color: #F94F6D;
+    border-radius: 5px;
+}
+
+button {
+    font-family: cursedTimerULiL;
+    font-style: normal;
+    background-color: #1B244A;
+    color: #9AABD8;
+    border-color: #9AABD8;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    line-height: 28px;
+    margin-top: 26px;
+}
+
+.one, .two{
+    margin-right: 9px;
+}
+
+.btns{
+    text-align: center;
+}
+
+.newgame{
+    flex-basis: 100%;
+    text-align: center;
+}
