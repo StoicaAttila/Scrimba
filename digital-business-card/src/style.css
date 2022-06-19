@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #23252C;
+}
+
+#root{
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 10% 30% 10% 30%;
+    font-family: "Inter", sans-serif;
+    background-color: #1A1B21;
+}
+
+.info-els{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-el{
+    border-radius: 10px 10px 0px 0px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: fill;
+}
+
+.name-el {
+    color: white;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.occupation{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12.8px;
+    text-align: center;
+    margin-top: -15px;
+    color: #F3BF99;
+}
+
+.email-btn{
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+
+    padding: 9px 13px 9px 11px;
+    width: 80%;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #374151;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 13px 9px 11px;
+    gap: 8px;
+}
+
+main {
+    margin: 25px;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #F5F5F5;
+}
+
+.about-interests-par{
+    margin-top: -10px;
+    color: #DCDCDC;
+    font-weight: 400;
+    font-size: 10.24px;
+    line-height: 150%;
+}
+
+footer{
+    background: #161619;
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+}
+
+.footer-element{
+    margin: 20px 25px;
+    align-items: center;
+}
+
+.footer-element > img {
+    padding-right: 22px;
+}
