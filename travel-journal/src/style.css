@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F55A5A;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.05em;
+    color: #FFFFFF;
+}
+
+nav > img{
+    margin-right: 5px;
+}
+
+.card{
+    display: flex;
+    margin: 40px;
+}
+
+.card-stats{
+    margin: 20px;
+}
+
+.place-icon{
+    margin-right: 5px;
+    width: 10px;
+    height: 15px;
+}
+
+.location{
+    margin-right: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.google-maps{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    color: #918E9B;
+}
+
+hr{
+    width: 95%;
+    border: 1px solid #F5F5F5;
+}
