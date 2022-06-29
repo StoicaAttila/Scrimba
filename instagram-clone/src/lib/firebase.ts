@@ -1,5 +1,5 @@
 //import { seedDatabase } from "../seed";
-import * as firebaseImport from "firebase";
+import firebase from 'firebase'
 
 const config: {
     apiKey: string;
@@ -17,7 +17,7 @@ const config: {
     appId: "1:1073544887701:web:2bc93899a4da78e0ac4a9c"
   };
 
-const firebase = firebaseImport.initializeApp(config);
+firebase.initializeApp(config);
 const FieldValue  = firebase.firestore;
 
 //seedDatabase(firebase);
