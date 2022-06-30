@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import FirebaseContext from "../context/firebase";
+import firebaseImp from 'firebase'
+import { doesUsernameExist } from "../services/firebase";
+import id from "date-fns/esm/locale/id/index.js";
+
 
 export default function Signup() {
+    const history = useHistory()    
+    const firebase = useContext(FirebaseContext)!
+    
     const [username, setUsername] = useState('')
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
@@ -11,9 +19,47 @@ export default function Signup() {
 
     const isInvalid = username === '' || fullName === '' || email === '' || password === ''
 
+    const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const usernameExist = await doesUsernameExist(username);
+
+        if(usernameExist && usernameExist.length === 0){
+            try{
+                const createdUserResult = await firebaseImp.auth().createUserWithEmailAndPassword(email,password)
+                if(createdUserResult.user != null){
+                    await createdUserResult.user.updateProfile({
+                        displayName: username
+                    })
+                    await firebaseImp.firestore().collection('user').add({
+                        userId: createdUserResult.user.uid,
+                        username: username.toLowerCase(),
+                        fullName,
+                        emailAddress: email.toLowerCase(),
+                        following: [],
+                        followers: [],
+                        dateCreated: Date.now() 
+                    })
+                }
+                history.push(ROUTES.DASHBOARD)
+            } catch (error){
+                if(error instanceof Error){
+                    setError(error.message)
+                }
+            }
+        } else{
+            setUsername('')
+            setFullName('')
+            setEmail('')
+            setPassword('')
+            setError('That username is already taken!')
+        } 
+    }
+
     useEffect(() =>{
         document.title = 'Instagram SignUp'
     }, [])
+
 
     return (
         <div className="container flex mx-auto max-w-xs items-center h-screen">
@@ -22,8 +68,8 @@ export default function Signup() {
                     <h1 className="flex justify-center w-full">
                         <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="Instagram" className="mt-2 w-6/12 mb-4"/>
                     </h1>
-
-                    <form method="POST">
+                    {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
+                    <form onSubmit={handleSignUp} method="POST">
                         <input
                             aria-label="Enter your username"
                             className="text-sm text-gray w-full mr-3 py-5 px-4 h-2 border bg-gray-background rounded mb-2"
