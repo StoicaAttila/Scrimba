@@ -1,15 +1,12 @@
 import { useHistory, Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
-import React, { useContext, useEffect, useState } from "react";
-import FirebaseContext from "../context/firebase";
-import firebaseImp from 'firebase'
+import React, { useEffect, useState } from "react";
+import firebase from 'firebase'
 import { doesUsernameExist } from "../services/firebase";
-import id from "date-fns/esm/locale/id/index.js";
 
 
 export default function Signup() {
-    const history = useHistory()    
-    const firebase = useContext(FirebaseContext)!
+    const history = useHistory()
     
     const [username, setUsername] = useState('')
     const [fullName, setFullName] = useState('')
@@ -26,12 +23,12 @@ export default function Signup() {
 
         if(usernameExist && usernameExist.length === 0){
             try{
-                const createdUserResult = await firebaseImp.auth().createUserWithEmailAndPassword(email,password)
+                const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(email,password)
                 if(createdUserResult.user != null){
                     await createdUserResult.user.updateProfile({
                         displayName: username
                     })
-                    await firebaseImp.firestore().collection('user').add({
+                    await firebase.firestore().collection('user').add({
                         userId: createdUserResult.user.uid,
                         username: username.toLowerCase(),
                         fullName,
