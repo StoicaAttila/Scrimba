@@ -12,6 +12,9 @@ export async function doesUsernameExist(username: any) {
 }
 
 export async function getUserByUserId(userId: any) {
+    if(!userId){
+        return
+    }
     const result = await firebase
         .firestore()
         .collection('users')
@@ -27,6 +30,10 @@ export async function getUserByUserId(userId: any) {
 }
 
 export async function getUserFollowedPhotos(userId: any, followingUserIds: any) {
+    
+    if(!userId || !followingUserIds){
+        return
+    }
     const result = await firebase
         .firestore()
         .collection('photos')
