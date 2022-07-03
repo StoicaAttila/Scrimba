@@ -1,9 +1,9 @@
 export function seedDatabase(firebase: any) {
     const users = [
       {
-        userId: 'y0Zwjk3YSYSNkI8TSvNIaEbjNKz2',
+        userId: 'VGuDDAwv5DbZZYXjfaFsmQvUgvJ3',
         username: 'tikka',
-        fullName: 'Ti Kka',
+        fullName: 'Tik Ka',
         emailAddress: 'tikka@tikmail.com',
         following: ['2'],
         followers: ['2', '3', '4'],
@@ -15,7 +15,7 @@ export function seedDatabase(firebase: any) {
         fullName: 'Raffaello Sanzio da Urbino',
         emailAddress: 'raphael@sanzio.com',
         following: [],
-        followers: ['y0Zwjk3YSYSNkI8TSvNIaEbjNKz2'],
+        followers: ['VGuDDAwv5DbZZYXjfaFsmQvUgvJ3'],
         dateCreated: Date.now()
       },
       {
@@ -24,7 +24,7 @@ export function seedDatabase(firebase: any) {
         fullName: 'Salvador Dalí',
         emailAddress: 'salvador@dali.com',
         following: [],
-        followers: ['y0Zwjk3YSYSNkI8TSvNIaEbjNKz2'],
+        followers: ['VGuDDAwv5DbZZYXjfaFsmQvUgvJ3'],
         dateCreated: Date.now()
       },
       {
@@ -33,7 +33,7 @@ export function seedDatabase(firebase: any) {
         fullName: 'George Orwell',
         emailAddress: 'george@orwell.com',
         following: [],
-        followers: ['y0Zwjk3YSYSNkI8TSvNIaEbjNKz2'],
+        followers: ['VGuDDAwv5DbZZYXjfaFsmQvUgvJ3'],
         dateCreated: Date.now()
       }
     ];
