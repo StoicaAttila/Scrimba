@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { firebase } from '../lib/firebase';
+import { doesUsernameExist } from '../services/firebase';
 
 export default function SignUp() {
 
@@ -15,32 +16,42 @@ export default function SignUp() {
 
     const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
-        try {
-            const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(emailAddress, password);
-            if(createdUserResult.user != null){
-                await createdUserResult.user.updateProfile({
-                    displayName: username
-                });
+        const usernameExists = await doesUsernameExist(username);
+        if (!usernameExists.length) {
+            try {
+                const createdUserResult = await firebase.auth().createUserWithEmailAndPassword(emailAddress, password);
                 
-                await firebase.firestore().collection('users').add({
-                    userId: createdUserResult.user.uid,
-                    username: username.toLowerCase(),
-                    fullName,
-                    emailAddress: emailAddress.toLowerCase(),
-                    following: [],
-                    followers: [],
-                    dateCreated: Date.now()
-                });
-            }     
-        } catch (error) {
+                if(createdUserResult.user != null){
+                    await createdUserResult.user.updateProfile({
+                        displayName: username
+                    });
+                    
+                    await firebase.firestore().collection('users').add({
+                        userId: createdUserResult.user.uid,
+                        username: username.toLowerCase(),
+                        fullName,
+                        emailAddress: emailAddress.toLowerCase(),
+                        following: [],
+                        followers: [],
+                        dateCreated: Date.now()
+                    });
+                } else{
+                    setError('The createdUserResult.user is null!')
+                }    
+                // we have to do a redirect to the dashboard
+            } catch (error) {
+                setFullName('');
+                if(error instanceof Error){
+                    setError(error.message);
+                }  
+            }
+        } else {
+            setUsername('');
             setFullName('');
             setEmailAddress('');
             setPassword('');
-            if(error instanceof Error){
-                setError(error.message);
-            }      
-        }
+            setError('That username is already taken, please try another!')
+        }  
     }
 
     React.useEffect(() => {
