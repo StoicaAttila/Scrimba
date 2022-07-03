@@ -1,4 +1,5 @@
 import { firebase } from '../lib/firebase';
+import { arrayUnion, arrayRemove } from "firebase/firestore";
 
 export async function doesUsernameExist(username: any) {
     const result = await firebase
@@ -115,8 +116,8 @@ export async function updateUserFollowing(docId:any, profileId:any, isFollowingP
         .doc(docId)
         .update({
             following: isFollowingProfile
-                // ? firestore.arrayRemove(profileId)
-                // : firestore.arrayUnion(profileId)
+                ? arrayRemove(profileId)
+                : arrayUnion(profileId)
         });
 }
 
@@ -127,8 +128,8 @@ export async function updateFollowedUserFollowers(docId:any, followingUserId:any
         .doc(docId)
         .update({
             following: isFollowingProfile
-                // ? firestore.arrayRemove(followingUserId)
-                // : firestore.arrayUnion(followingUserId)
+                ? arrayRemove(followingUserId)
+                : arrayUnion(followingUserId)
         });
 }
 
