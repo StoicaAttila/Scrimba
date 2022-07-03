@@ -6,10 +6,6 @@ import { UserContext } from '../context/user';
 
 
 export default function Header() {
-    // const user: any = null;
-    // const user: any = {
-    //     displayName: "tikka"
-    // };
 
     const { user } = React.useContext(UserContext);
     return (
