@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { firebase } from '../lib/firebase';
 import { doesUsernameExist } from '../services/firebase';
 
 export default function SignUp() {
+
+    const history = useNavigate();
 
     const [username, setUsername] = React.useState('');
     const [fullName, setFullName] = React.useState('');
@@ -35,6 +37,7 @@ export default function SignUp() {
                         followers: [],
                         dateCreated: Date.now()
                     });
+                    history(ROUTES.DASHBOARD);
                 } else{
                     setError('The createdUserResult.user is null!')
                 }    
