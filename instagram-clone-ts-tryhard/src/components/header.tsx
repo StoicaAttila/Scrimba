@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { firebase } from '../lib/firebase';
+import { UserContext } from '../context/user';
 
 
 export default function Header() {
     // const user: any = null;
-    const user: any = {
-        displayName: "tikka"
-    };
+    // const user: any = {
+    //     displayName: "tikka"
+    // };
 
+    const { user } = React.useContext(UserContext);
     return (
         <header className="h-16 bg-white border-b mb-8">
             <div className="container mx-auto max-width-lg h-full">
