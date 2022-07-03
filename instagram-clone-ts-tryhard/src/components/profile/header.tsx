@@ -22,7 +22,7 @@ export default function Header({photosCount, followerCount, setFollowerCount, us
                 <img
                     className="rounded-full h-40 w-40 flex"
                     alt={`${username} profile pic`}
-                    src={`/images/avatars/${username}.jpg`}
+                    src={process.env.PUBLIC_URL + `/images/avatars/${username}.jpg`}
                 />
             </div>
             <div className="flex items-center justify-center flex-col col-span-2">
