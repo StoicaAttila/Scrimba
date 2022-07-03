@@ -18,6 +18,13 @@ const Suggestions = ({ userId }: any) => {
             username: 'orwell',
             profileId: '2',
             userId: '3'
+        },
+        {
+            docId: '3',
+            userDocId: 1,
+            username: 'raphael',
+            profileId: '2',
+            userId: '3'
         }
     ]);
     

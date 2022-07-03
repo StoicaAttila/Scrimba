@@ -107,3 +107,38 @@ export async function getUserPhotosByUsername(username: any) {
     
     return photos;
 }
+
+export async function updateUserFollowing(docId:any, profileId:any, isFollowingProfile:any) {
+    return firebase
+        .firestore()
+        .collection('users')
+        .doc(docId)
+        .update({
+            following: isFollowingProfile
+                // ? firestore.arrayRemove(profileId)
+                // : firestore.arrayUnion(profileId)
+        });
+}
+
+export async function updateFollowedUserFollowers(docId:any, followingUserId:any, isFollowingProfile:any) {
+    return firebase
+        .firestore()
+        .collection('users')
+        .doc(docId)
+        .update({
+            following: isFollowingProfile
+                // ? firestore.arrayRemove(followingUserId)
+                // : firestore.arrayUnion(followingUserId)
+        });
+}
+
+export async function toggleFollow(
+    isFollowingProfile: any,
+    activeUserDocId: any,
+    profileDocId: any,
+    profileId: any,
+    followingUserId: any
+) {
+    await updateUserFollowing(activeUserDocId, profileId, isFollowingProfile);
+    await updateFollowedUserFollowers(profileDocId, followingUserId, isFollowingProfile);
+}
