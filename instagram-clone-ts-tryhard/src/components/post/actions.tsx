@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {FirebaseContext} from '../../context/firebase';
 import {UserContext} from '../../context/user';
+import { arrayUnion, arrayRemove } from "firebase/firestore";
 
 export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }: any) {
     const {
@@ -8,9 +9,9 @@ export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }: 
     } = useContext(UserContext);
     const [toggleLiked, setToggleLiked] = useState(likedPhoto);
     const [likes, setLikes] = useState(totalLikes);
-    const { firebase, firestore } = useContext(FirebaseContext);
+    const { firebase } = useContext(FirebaseContext);
     
-    const handleToggleLiked = async (toggleLiked: any) => {
+    const handleToggleLiked = async () => {
         setToggleLiked((toggleLiked: any) => !toggleLiked);
         
         await firebase
@@ -18,7 +19,7 @@ export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }: 
             .collection('photos')
             .doc(docId)
             .update({
-                likes: toggleLiked ? firestore.arrayRemove(userId) : firestore.arrayUnion(userId)
+                likes: toggleLiked ? arrayRemove(userId) : arrayUnion(userId)
             });
         
         setLikes((likes: any) => (toggleLiked ? likes - 1 : likes + 1));
@@ -29,10 +30,10 @@ export default function Actions({ docId, totalLikes, likedPhoto, handleFocus }: 
             <div className="flex justify-between p-4">
                 <div className="flex">
                     <svg
-                        onClick={() => handleToggleLiked((toggleLiked: any) => !toggleLiked)}
+                        onClick={() => handleToggleLiked()}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                handleToggleLiked((toggleLiked: any) => !toggleLiked);
+                                handleToggleLiked();
                             }
                         }}
                         className={`w-8 mr-4 select-none cursor-pointer ${
