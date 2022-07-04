@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import { firebase } from '../lib/firebase';
+// import { firebase } from '../lib/firebase';
 import { UserContext } from '../context/user';
 
 
@@ -38,8 +38,23 @@ export default function Header() {
                                         />
                                     </svg>
                                 </Link>
-                                
-                                <button
+                                <Link to={ROUTES.LOGIN} arial-label="Sign Out">
+                                    <svg
+                                        className="w-8 mr-6 text-black-light cursor-pointer"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                        />
+                                    </svg>
+                                </Link>
+                                {/* <button
                                     type="button"
                                     title="Sign Out"
                                     onClick={() => firebase.auth().signOut()}
@@ -63,7 +78,7 @@ export default function Header() {
                                             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                         />
                                     </svg>
-                                </button>
+                                </button> */}
                                 <div className="flex items-center cursor-pointer">
                                     <Link to={`/p/${user.displayName}`}>
                                         <img
