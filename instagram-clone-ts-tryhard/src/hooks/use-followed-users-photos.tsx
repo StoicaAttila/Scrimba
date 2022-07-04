@@ -8,7 +8,6 @@ export default function useFollowedUsersPhotos() {
     const {
         user: {uid: userId = ''}
     } = useContext(UserContext);
-    
     useEffect(() => {
         async function getTimelinePhotos() {
             const followingUserIds: any = await getUserByUserId(userId);
