@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Skelton from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
 
 const User = ({ username, fullName }: any) => 
         !username || !fullName ? (
-            <Skelton count={2} height={61} />        
+            <Skeleton count={1} height={61} />        
         ) : (
             <Link to={`/p/${username}`} className="grid grid-cols-4 gap-4 mb-4 items-center">
                 <div className="flex items-center justify-between col-span-1">
